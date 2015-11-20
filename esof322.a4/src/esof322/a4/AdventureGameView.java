@@ -1,9 +1,9 @@
 package esof322.a4;
 
-import javax.swing.*;
-
 
 import BreezySwing.*;
+
+import javax.swing.*;
 
 public class AdventureGameView extends GBFrame{
 
@@ -24,6 +24,9 @@ public class AdventureGameView extends GBFrame{
 
    JLabel carryingLable = addLabel ("You are carying: ",6,1,1,1);
    JTextArea carryingArea = addTextArea("Nothing",7,1,4,3); 
+   
+   JLabel activityLabel = addLabel("Interaction Info", 2, 5, 1, 1); //third text box label
+   JTextArea activityArea = addTextArea("", 3, 4, 2, 2);    //third text box
 
 JLabel separator1 = addLabel
    ("-----------------------------------------------------------------"
@@ -33,8 +36,10 @@ JLabel separator1 = addLabel
    JLabel choiceLabel    = addLabel
       ("Choose a direction, pick-up, or drop an item" ,11,1,5,1);
 
-   JButton grabButton = addButton ("Grab an item", 12, 5,1,1);
-   JButton dropButton = addButton ("Drop an item", 13, 5,1,1);
+   JButton grabButton1 = addButton ("Grab Item 1", 11, 5, 1, 1); //choose to grab first item 
+   JButton grabButton2 = addButton ("Grab Item 2", 12, 5,1,1);  //choose to grap second item 
+   JButton dropButton1 = addButton ("Drop Item 1", 13, 5, 1, 1); //choose to grab first item 
+   JButton dropButton2 = addButton ("Drop Item 2", 14, 5,1,1);
    
    JButton northButton = addButton ("North", 12,2,1,1);
    JButton southButton = addButton ("South", 14,2,1,1);
@@ -78,11 +83,17 @@ JLabel separator1 = addLabel
       else if (buttonObj == westButton)
 	 model.goWest();
 
-      else if (buttonObj == grabButton)
-	 grab();
+      else if (buttonObj == grabButton1)
+         grab(1); 
+      
+      else if (buttonObj == grabButton2)
+	 grab(2);
 
-      else if (buttonObj == dropButton)
-	 drop();
+      else if (buttonObj == dropButton1)
+	 drop(1);
+      
+      else if (buttonObj == dropButton2)
+          drop(2);
 
       displayCurrentInfo();
   }
@@ -90,21 +101,21 @@ JLabel separator1 = addLabel
    
    // Private methods-------------------------------------------
 
+   //print to text areas
    private void displayCurrentInfo(){
 	 viewArea.setText(model.getView());
 	 carryingArea.setText(model.getItems());
+         activityArea.setText(model.getWallFlag()); 
 	 }
 
-    // Left as an exercise. 
-   private void grab() {
-      //  Set up a dialog to talk to the model and
-      //  determine what items to pick up.
+    // call to pickup item 
+   private void grab(int item) {
+       model.pickUpItem(item);
    }
 
     // Left as an exercise. 
-    private void drop() {
-	     //  Set up a dialog to talk to the model and 
-             //  determine what items to pick up.
+    private void drop(int item) {
+        model.dropItem(item);
    }
 
    public static void main (String[] args){

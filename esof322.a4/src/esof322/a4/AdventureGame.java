@@ -1,8 +1,8 @@
 package esof322.a4;
 
+
 /**  Adventure Game  Program Code
      Copyright (c) 1999 James M. Bieman
-
      To compile: javac cs314.a2.AdventureGame.java
      To run:     java cs314.a2.AdventureGame
      The main routine is AdventureGame.main
@@ -12,11 +12,9 @@ package esof322.a4;
      one in Gamma, Helm, Johnson, Vlissides (The Gang of Four),
      "Design Patterns: Elements of Reusable Object-Oriented Software",
      Addison-Wesley, 1997.
-
      To really be consistent with the old game we would need a
      much larger cave system with a hundred or so rooms, and a 
      more "understanding" user interface.
-
      The old game just put you near the cave, displayed the "view"
      as text, and offered no instructions.  If you gave a command that
      it understood, you could proceed.  If your command could not
@@ -26,24 +24,18 @@ package esof322.a4;
      find your way around.  Sometimes you could not return exactly
      the way you came.  An exit to the east may not enter the west
      side of the "adjacent room"; the passage might curve.
-
      Perhaps, this implementation can evolve to be closer to
      the original game, or even go beyond it. 
-
      Jim Bieman
      September 1999.
-
-
 /**  Adventure Game  Program Code
 Copyright (c) 1999 James M. Bieman
 Updated August 2010
 - Code is put into package cs314.a2 to match current CS314 coding standards.
 - Obsolete Vector is replaced with ArrayList with type parameters.
 - Deletion of some unused variables.
-
 To compile: javac cs314.a2.AdventureGame.java
 To run:     java cs314.a2.AdventureGame
-
 The main routine is AdventureGame.main
 		    
 		    **/
@@ -201,4 +193,3 @@ public static void main(String args[])
  }
 
 }
-

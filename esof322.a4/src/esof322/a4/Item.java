@@ -10,20 +10,19 @@ package esof322.a4;
 				    
 **/
 
-
-// class Item
+//class Item
 
 public class Item {
 
-  private String description;
+private String description;
 
-  public void setDesc(String d){
-      description = d;
-  }
+public void setDesc(String d){
+   description = d;
+}
 
-  public String getDesc(){
+public String getDesc(){
 	     return description;
-  }
+}
 
 }
 

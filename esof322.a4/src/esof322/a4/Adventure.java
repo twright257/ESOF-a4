@@ -1,12 +1,15 @@
 package esof322.a4;
+//Michael Shihrer
+//Andrew Mueller
+//Tyler Wright
+
+
 
 
 /**  Adventure Game  Program Code
      Copyright (c) 1999 James M. Bieman
-
      To compile: javac AdventureGame.java
      To run:     java AdventureGame
-
      The main routine is AdventureGame.main
                 
 **/
@@ -16,18 +19,14 @@ Copyright (c) 1999-2012 James M. Bieman
 The Adventure game is based on the "Colossal Cave Adventure" originally
 designed by Will Crowther and implemented by Will Crowther
 and Don Wood in Fortran in 1975 and 1976.
-
 This micro-version is a variant of the original cave system and is implemented in Java
 with just a few rooms and with a much more limited vocabulary.
-
 Updated August 2010, January 2012
 - Code is put into package cs314.a2 to match current CS314 coding standards.
 Updated January 2012
 - Renamed as the "Adventure Game"
-
 To compile: javac cs314.a2.AdventureGame.java
 To run:     java cs314.a2.AdventureGame
-
 The main routine is AdventureGame.main
 			    
 			    **/
@@ -36,17 +35,14 @@ The main routine is AdventureGame.main
         It eventually be replaced with a more flexible mechanism
         to support input and output from devices other than
         an ASCII terminal.
-
 		Room descriptions are followed by a room identifier,
 		to ease debugging and testing.  These would be removed
 		to help confuse the user, which is our ultimate aim.
-
 		I haven't added all of the room descriptions.  They
 		will be done later.
 		
 		In this version all I/O is through standard I/O;
 		I/O is to and from the console. 
-
 */
 
 public class Adventure {
@@ -81,7 +77,7 @@ public class Adventure {
 
   // Room 3:
      Room r3 = new Room();
-     r3.setDesc("You really need your flashlight here. \n"+
+     r3.setDesc("It is pitch black. You are likely to be eaten by a grue.\n"+
 		"There is a wide passage that quickly narrows\n"
 		+"to the west, a bright opening to the east,\n"
 		+ "and a deep hole that appears to have no bottom\n"
@@ -133,7 +129,7 @@ public class Adventure {
 
   // Room 9:
      Room r9 = new Room();
-     r9.setDesc("Room r9.");
+     r9.setDesc("This room is dimly lit from a flickering candle.\nDoesn't seem to be anything of interest in here (r9).");
 
   // Room 10:
      Room r10 = new Room();
@@ -174,4 +170,3 @@ public class Adventure {
 
   }
 }
-

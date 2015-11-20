@@ -12,9 +12,8 @@ package esof322.a4;
 
 				    **/
 
-// interface CaveSite
+//interface CaveSite
+public interface CaveSite {
 
-public interface CaveSite{
-  void enter(Player p);
+ String enter(Player p);
 }
-
