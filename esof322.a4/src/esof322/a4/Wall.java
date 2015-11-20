@@ -4,7 +4,6 @@ package esof322.a4;
 //Andrew Mueller
 //Tyler Wright
 
-package esof322.a2;
 
 /**
 * Adventure Game Program Code Copyright (c) 1999 James M. Bieman
