@@ -12,7 +12,7 @@ public class WelcomeView extends GBFrame{
 	JButton hardButton = addButton("Hard", 15, 5, 1, 1); // choose to grab first item 
 	JButton loadButton = addButton("Load Game", 21, 5, 1, 1); // choose to grab first item 
 	
-	JLabel separator1 = addLabel("----------------------------------------------------------------------", 20, 5, 1, 1);
+	JLabel separator1 = addLabel("-------------------------------------", 20, 5, 1, 1);
 
 	
 	public WelcomeView() {
@@ -21,12 +21,15 @@ public class WelcomeView extends GBFrame{
 	
 	public void buttonClicked(JButton buttonObj) {
 		if (buttonObj == easyButton) {
-			JFrame view = new AdventureGameView();
-			view.setSize(800, 600); /* was 400, 250 */
+			JFrame view = new AdventureGameView(0);
+			view.setSize(900, 800); /* was 400, 250 */
 			view.setVisible(true);
 			this.dispose();
 		}else if (buttonObj == hardButton) {
-			
+			JFrame view = new AdventureGameView(1);
+			view.setSize(900, 800); /* was 400, 250 */
+			view.setVisible(true);
+			this.dispose();
 		}else if (buttonObj == loadButton) {
 			
 		}

@@ -14,20 +14,20 @@ import org.junit.Test;
 import esof322.a4.Door;
 import esof322.a4.Key;
 import esof322.a4.Player;
-import esof322.a4.Room;
+import esof322.a4.Level0Room;
 import esof322.a4.Wall;
 
 public class DoorTest {
-    Room r1; 
-    Room r2; 
+    Level0Room r1; 
+    Level0Room r2; 
     Wall w1; 
     Key k1; 
     Player p; 
 
 	@Before
 	public void setUp() throws Exception {
-	    r1 = new Room(); 
-	    r2 = new Room(); 
+	    r1 = new Level0Room(""); 
+	    r2 = new Level0Room(""); 
 	    w1 = new Wall(); 
 	    k1 = new Key(); 
 	    p = new Player(); 

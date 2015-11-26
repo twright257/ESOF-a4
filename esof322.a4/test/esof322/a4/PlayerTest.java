@@ -13,19 +13,19 @@ import org.junit.Test;
 
 import esof322.a4.Item;
 import esof322.a4.Player;
-import esof322.a4.Room;
+import esof322.a4.Level0Room;
 
 public class PlayerTest {
 	Player p; 
 	Item item; 
-	Room r1; 
+	Level0Room r1; 
 	
 	@Before
 	public void setUp() throws Exception {
 		p = new Player(); 
 		item = new Item(); 
 		item.setDesc("key");
-		r1 = new Room(); 
+		r1 = new Level0Room(""); 
 	}
 	
     /**
@@ -59,7 +59,7 @@ public class PlayerTest {
         System.out.println("go");
         int direction = 0;
         p.setLoc(r1);
-        Room r2 = new Room(); 
+        Level0Room r2 = new Level0Room(""); 
         r1.setSide(0, r2);
         p.go(direction);
         //test that player now in location corresponding to direction 

@@ -57,12 +57,13 @@ public class AdventureGameView extends GBFrame {
 
 	// Constructor-----------------------------------------------
 
-	public AdventureGameView() {
+	public AdventureGameView(int type) {
 		setTitle("Adventure Game");
-		model = new AdventureGameModelFacade();
+		model = new AdventureGameModelFacade(type);
 
 		viewArea.setEditable(false);
 		carryingArea.setEditable(false);
+		activityArea.setEditable(false); 
 		displayCurrentInfo();
 	}
 
@@ -98,6 +99,10 @@ public class AdventureGameView extends GBFrame {
 
 		else if (buttonObj == dropButton2)
 			drop(2);
+		else if (buttonObj == saveButton)
+			model.save("test"); 
+		else if (buttonObj == loadButton)
+			model.load(); 
 
 		displayCurrentInfo();
 	}

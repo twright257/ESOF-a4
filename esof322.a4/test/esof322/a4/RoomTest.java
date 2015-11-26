@@ -13,18 +13,18 @@ import org.junit.Test;
 
 import esof322.a4.Item;
 import esof322.a4.Player;
-import esof322.a4.Room;
+import esof322.a4.Level0Room;
 
 public class RoomTest {
 	Player p; 
 	Item item; 
-	Room room; 
+	Level0Room room; 
 
 	@Before
 	public void setUp() throws Exception {
 		p = new Player(); 
 		item = new Item(); 
-		room = new Room(); 
+		room = new Level0Room(""); 
 		p.setLoc(room);
 	}
 	
@@ -34,8 +34,8 @@ public class RoomTest {
 	@Test
 	public void testSetSide() {
 		System.out.println("set side"); 
-		Room r2 = new Room(); 
-		Room r3 = new Room(); 
+		Level0Room r2 = new Level0Room(""); 
+		Level0Room r3 = new Level0Room(""); 
 		room.setSide(0, r2); 
 		room.setSide(1,  r3); 
 		room.exit(0, p);
@@ -116,7 +116,7 @@ public class RoomTest {
         int direction = 0;
         p.setLoc(room); 
         assertEquals("room", room, p.getLoc()); 
-        Room r2 = new Room(); 
+        Level0Room r2 = new Level0Room(""); 
         room.setSide(direction, r2);
         room.exit(direction, p);
         assertEquals("successfully exit", r2, p.getLoc());

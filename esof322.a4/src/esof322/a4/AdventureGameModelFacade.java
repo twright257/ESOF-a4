@@ -1,5 +1,12 @@
 package esof322.a4;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+
 public class AdventureGameModelFacade {
 
     // some private fields to reference current location,
@@ -8,10 +15,12 @@ public class AdventureGameModelFacade {
     // These methods and fields are left as exercises.
     private Player thePlayer;
     private String interText = ""; //interaction info
+    private CaveFactory f; 
 
-    AdventureGameModelFacade() { // we initialize
+    AdventureGameModelFacade(int type) { // we initialize
         thePlayer = new Player();
-        Adventure theCave = new Adventure();
+        this.f = new FactoryCreator(type).createFactory(); 
+        Adventure theCave = new Adventure(f);
         Room startRm = theCave.createAdventure();
         thePlayer.setRoom(startRm);
     }
@@ -99,5 +108,29 @@ public class AdventureGameModelFacade {
             p.drop(item);
         }
     }
+    
+    public void save(String saveName) {
+    	String fullSave = ""; 
+    	String location = thePlayer.getLoc().getRoomName();
+    	String things = thePlayer.showMyThings(); 
+    	fullSave = saveName + "\n" + f.getClass().getSimpleName() + "\n" + location + "\n" + things; 
+    	PrintWriter writer = null;
+		try {
+			writer = new PrintWriter("SaveStuff/TESTING.txt", "UTF-8");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	writer.println(fullSave);
+    	writer.close();
 
+    }
+    
+    public void load() {
+    	
+    }
+    
 }
