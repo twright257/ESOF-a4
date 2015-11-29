@@ -18,6 +18,7 @@ public class Player {
     private Item[] myThings = new Item[2];
 
     private int itemCount = 0;
+    private int health = 100; 
 
     public void setRoom(Room r) {
         myLoc = r;
@@ -33,9 +34,14 @@ public class Player {
 
     public void pickUp(Item i) {
         if (itemCount < 2) {
-            myThings[itemCount] = i;
-            itemCount++;
-            myLoc.removeItem(i);
+            if (i.getDesc().equals("A first aid kit")) { //do not add health kit to items
+            	health = 100; 
+            	myLoc.removeItem(i); 
+            } else {
+                myThings[itemCount] = i;
+                itemCount++;
+                myLoc.removeItem(i);
+            }
         }
     }
 
@@ -95,6 +101,13 @@ public class Player {
         return itemCount;
     }
     
+    public void setHealth(int h) {
+    	health -= h; 
+    }
+    
+    public int getHealth() {
+    	return health; 
+    }
     
 
 }

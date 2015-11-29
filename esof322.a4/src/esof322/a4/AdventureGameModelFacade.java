@@ -16,6 +16,7 @@ public class AdventureGameModelFacade {
     private Player thePlayer;
     private String interText = ""; //interaction info
     private CaveFactory f; 
+    private boolean gameEnd = false; 
 
     AdventureGameModelFacade(int type) { // we initialize
         thePlayer = new Player();
@@ -23,6 +24,11 @@ public class AdventureGameModelFacade {
         Adventure theCave = new Adventure(f);
         Room startRm = theCave.createAdventure();
         thePlayer.setRoom(startRm);
+    }
+    
+    //return it game has ended
+    public boolean gameEnd() {
+    	return gameEnd; 
     }
 
     //Moves player "up" a room
@@ -67,7 +73,11 @@ public class AdventureGameModelFacade {
 
     //return interaction info 
     public String getWallFlag() {
-        return interText;
+    	if (thePlayer.getHealth() <= 0) {
+    		gameOver(); 
+    		return "Game Over"; 
+    	}
+        return "Health: " + thePlayer.getHealth() + "\n" + interText;
     }
 
     //pickup item 1 or 2 
@@ -109,14 +119,24 @@ public class AdventureGameModelFacade {
         }
     }
     
+    //called if health runs out
+    public void gameOver() {
+    	interText = "Game Over";
+    	thePlayer.getLoc().setDesc("Game Over");
+    	gameEnd = true; 
+    }
+    
+    
+    //method for saving game
     public void save(String saveName) {
     	String fullSave = ""; 
     	String location = thePlayer.getLoc().getRoomName();
     	String things = thePlayer.showMyThings(); 
-    	fullSave = saveName + "\n" + f.getClass().getSimpleName() + "\n" + location + "\n" + things; 
+    	fullSave = f.getClass().getSimpleName() + "\n" + location + "\n" + things; 
+    	String fileName = "SaveStuff/" + saveName + ".txt"; 
     	PrintWriter writer = null;
 		try {
-			writer = new PrintWriter("SaveStuff/TESTING.txt", "UTF-8");
+			writer = new PrintWriter(fileName, "UTF-8");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,6 +149,7 @@ public class AdventureGameModelFacade {
 
     }
     
+    //method for loading game 
     public void load() {
     	
     }

@@ -27,7 +27,7 @@ package esof322.a4;
 	 }
 
 	 public void setDesc(String d) {
-	     description = "DANGER! Spikes are coming down from the ceiling!\n" + "Get out in the next 5 Seconds!\n\n" + d;
+	     description = "DANGER! Spikes are coming down from the ceiling!\n\n" + d;
 	 }
 
 	 public void setSide(int direction, CaveSite m) {
@@ -54,6 +54,7 @@ package esof322.a4;
 
 	 public String enter(Player p) {
 	     p.setLoc(this);
+	     p.setHealth(40);
 	     return "";
 	 }
 

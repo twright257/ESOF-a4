@@ -110,11 +110,17 @@ public class Adventure {
      Room r6 = f.createRoomType1("r6");
      r6.setDesc("The ceiling is full of bats.\n"
     		     + "You should put your hat on your head (r6).");
+     HealthKit kit1 = new HealthKit();
+     kit1.setDesc("A first aid kit");
+     r6.addItem(kit1);
 
   // Room 7:
      Room r7 = f.createRoomType1("r7");
      r7.setDesc("This room is very damp. There are puddles on the floor\n" +
      		"and a steady dripping from above (r7).");
+     HealthKit kit2 = new HealthKit();
+     kit2.setDesc("A first aid kit");
+     r6.addItem(kit2);
 
   // Connect rooms 3, 4, 5, 6, & 7.
      r3.setSide(2,r4);

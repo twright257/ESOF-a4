@@ -11,7 +11,7 @@ public class AdventureGameView extends GBFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
+ 
 	
 	// Window objects --------------------------------------
 	JLabel welcomeLabel = addLabel(
@@ -54,6 +54,7 @@ public class AdventureGameView extends GBFrame {
 	JButton downButton = addButton("Down", 14, 3, 1, 1);
 
 	AdventureGameModelFacade model;
+	private String save = ""; 
 
 	// Constructor-----------------------------------------------
 
@@ -70,41 +71,53 @@ public class AdventureGameView extends GBFrame {
 	// buttonClicked method--------------------------------------
 
 	public void buttonClicked(JButton buttonObj) {
-		if (buttonObj == upButton)
-			model.goUp();
-
-		else if (buttonObj == downButton)
-			model.goDown();
-
-		else if (buttonObj == northButton)
-			model.goNorth();
-
-		else if (buttonObj == southButton)
-			model.goSouth();
-
-		else if (buttonObj == eastButton)
-			model.goEast();
-
-		else if (buttonObj == westButton)
-			model.goWest();
-
-		else if (buttonObj == grabButton1)
-			grab(1);
-
-		else if (buttonObj == grabButton2)
-			grab(2);
-
-		else if (buttonObj == dropButton1)
-			drop(1);
-
-		else if (buttonObj == dropButton2)
-			drop(2);
-		else if (buttonObj == saveButton)
-			model.save("test"); 
-		else if (buttonObj == loadButton)
-			model.load(); 
+		if (!model.gameEnd()) {
+			if (buttonObj == upButton)
+				model.goUp();
+	
+			else if (buttonObj == downButton)
+				model.goDown();
+	
+			else if (buttonObj == northButton)
+				model.goNorth();
+	
+			else if (buttonObj == southButton)
+				model.goSouth();
+	
+			else if (buttonObj == eastButton)
+				model.goEast();
+	
+			else if (buttonObj == westButton)
+				model.goWest();
+	
+			else if (buttonObj == grabButton1)
+				grab(1);
+	
+			else if (buttonObj == grabButton2)
+				grab(2);
+	
+			else if (buttonObj == dropButton1)
+				drop(1);
+	
+			else if (buttonObj == dropButton2)
+				drop(2);
+			else if (buttonObj == saveButton)
+				  saveWindow(); 
+			else if (buttonObj == loadButton)
+				model.load(); 
+		} else {
+			if (buttonObj == loadButton) {
+				model.load(); 
+			}
+		}
 
 		displayCurrentInfo();
+	}
+
+	//set save name and call model save
+	public void save(String s) {
+		save = s; 
+		model.save(save);
 	}
 
 	// Private methods-------------------------------------------
@@ -125,5 +138,17 @@ public class AdventureGameView extends GBFrame {
 	private void drop(int item) {
 		model.dropItem(item);
 	}
+	
+	//open save game window
+	private void saveWindow() { 
+		JFrame view = new SaveView(this); 
+		view.setSize(300, 200);
+		view.setVisible(true);
+		view.setResizable(false);
+		
+	}
+	
 
 }
+
+
