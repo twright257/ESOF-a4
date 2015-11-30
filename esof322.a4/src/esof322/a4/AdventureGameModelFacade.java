@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.ArrayList;
 
 public class AdventureGameModelFacade {
 
@@ -13,17 +14,27 @@ public class AdventureGameModelFacade {
     // its description, what I'm carrying, etc.
     //
     // These methods and fields are left as exercises.
+	private ArrayList<String> loadInfo; 
     private Player thePlayer;
     private String interText = ""; //interaction info
     private CaveFactory f; 
     private boolean gameEnd = false; 
 
-    AdventureGameModelFacade(int type) { // we initialize
+    AdventureGameModelFacade(int type, ArrayList<String> loadInfo) { // we initialize
+    	this.loadInfo = loadInfo; 
         thePlayer = new Player();
-        this.f = new FactoryCreator(type).createFactory(); 
-        Adventure theCave = new Adventure(f);
-        Room startRm = theCave.createAdventure();
-        thePlayer.setRoom(startRm);
+        if (type == 2) {
+        	this.f = new FactoryCreator(Integer.valueOf(loadInfo.get(0))).createFactory(); 
+        	Adventure theCave = new Adventure(f, loadInfo.get(1)); 
+        	Room startRm = theCave.createAdventure(); 
+        	thePlayer.setRoom(startRm);
+        } else {
+        	this.f = new FactoryCreator(type).createFactory(); 
+        	Adventure theCave = new Adventure(f, "outside");
+            Room startRm = theCave.createAdventure();
+            thePlayer.setRoom(startRm);
+        }
+        
     }
     
     //return it game has ended
@@ -132,7 +143,13 @@ public class AdventureGameModelFacade {
     	String fullSave = ""; 
     	String location = thePlayer.getLoc().getRoomName();
     	String things = thePlayer.showMyThings(); 
-    	fullSave = f.getClass().getSimpleName() + "\n" + location + "\n" + things; 
+    	String type= ""; 
+    	if (f.getClass().getSimpleName().equals("Level0Factory")) {
+    		type = "0"; 
+    	} else {
+    		type = "1"; 
+    	}
+    	fullSave = type + "\r\n" + location + "\r\n" + things; 
     	String fileName = "SaveStuff/" + saveName + ".txt"; 
     	PrintWriter writer = null;
 		try {

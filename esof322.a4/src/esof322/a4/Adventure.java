@@ -47,16 +47,18 @@ The main routine is AdventureGame.main
 
 public class Adventure {
 
+	private String start; 
   private CaveFactory f; 
   private Room entrance;
   
-  public Adventure(CaveFactory f) {
+  public Adventure(CaveFactory f, String start) {
 	 this.f = f; 
+	 this.start = start; 
   }
   
   public Room createAdventure(){
     // The outside: 
-      Room  outside = f.createRoomType1("out");
+      Room  outside = f.createRoomType1("outside");
       outside.setDesc(
         "You are standing outside, on the edge of a cliff,\n" +
 	" A creek runs alongside the cliff.\n" + 
@@ -176,7 +178,33 @@ public class Adventure {
     r11.setSide(4,theDoor);
 
  // Now return the entrance:
-    entrance = outside;
+
+    if (start.equals("outside"))
+    	entrance = outside; 
+    else if (start.equals("r1"))
+    	entrance = r1; 
+    else if (start.equals("r2"))
+    	entrance = r2;
+    else if (start.equals("r3"))
+    	entrance = r3;
+    else if (start.equals("r4"))
+    	entrance = r4;
+    else if (start.equals("r5"))
+    	entrance = r5;
+    else if (start.equals("r6"))
+    	entrance = r6;
+    else if (start.equals("r7"))
+    	entrance = r7;
+    else if (start.equals("r8"))
+    	entrance = r8;
+    else if (start.equals("r9"))
+    	entrance = r9;
+    else if (start.equals("r10"))
+    	entrance = r10;
+    else if (start.equals("r11"))
+    	entrance = r11;
+    
+    
     return entrance;
 
   }

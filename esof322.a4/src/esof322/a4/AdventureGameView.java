@@ -2,6 +2,8 @@ package esof322.a4;
 
 import BreezySwing.*;
 
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class AdventureGameView extends GBFrame {
@@ -11,7 +13,7 @@ public class AdventureGameView extends GBFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
- 
+	private ArrayList loadInfo; 
 	
 	// Window objects --------------------------------------
 	JLabel welcomeLabel = addLabel(
@@ -58,9 +60,10 @@ public class AdventureGameView extends GBFrame {
 
 	// Constructor-----------------------------------------------
 
-	public AdventureGameView(int type) {
+	public AdventureGameView(int type, ArrayList loadInfo) {
+		this.loadInfo = loadInfo; 
 		setTitle("Adventure Game");
-		model = new AdventureGameModelFacade(type);
+		model = new AdventureGameModelFacade(type, loadInfo);
 
 		viewArea.setEditable(false);
 		carryingArea.setEditable(false);
@@ -104,7 +107,8 @@ public class AdventureGameView extends GBFrame {
 			else if (buttonObj == saveButton)
 				  saveWindow(); 
 			else if (buttonObj == loadButton)
-				model.load(); 
+				//loadWindow();
+				System.out.println("");
 		} else {
 			if (buttonObj == loadButton) {
 				model.load(); 
@@ -147,6 +151,13 @@ public class AdventureGameView extends GBFrame {
 		view.setResizable(false);
 		
 	}
+	
+/*	private void loadWindow() {
+		JFrame view = new LoadView(this); 
+		view.setSize(300, 200);
+		view.setVisible(true);
+		view.setResizable(false);
+	}*/
 	
 
 }
