@@ -1,5 +1,8 @@
 package esof322.a4;
 
+/**
+ * Hard difficulty room adds spike function that causes reduction in player health 
+ */
 	import java.util.ArrayList;
 	import java.util.ListIterator;
 
@@ -38,8 +41,11 @@ package esof322.a4;
 	     contents.add(theItem);
 	 }
 
+	 //remove item from room if item is in room 
 	 public void removeItem(Item theItem) {
-	     contents.remove(theItem);
+		 if (contents.contains(theItem)) {
+			 contents.remove(theItem);
+		 }
 	 }
 
 	 public boolean roomEmpty() {

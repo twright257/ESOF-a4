@@ -1,6 +1,6 @@
 package esof322.a4;
 
-public class Level0Factory extends CaveFactory{
+public class Level0Factory implements CaveFactory{
 
 	@Override
 	public Room createRoomType1(String s) {

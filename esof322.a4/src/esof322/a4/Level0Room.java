@@ -1,15 +1,7 @@
 package esof322.a4;
 
-/**  Adventure Game  Program Code
-     Copyright (c) 1999 James M. Bieman
-
-     To compile: javac AdventureGame.java
-     To run:     java AdventureGame
-
-     The main routine is AdventureGame.main
-     
-     Update August 2010: refactored Vector contents into ArrayList<Item> contents.
-      This gets rid of the use of obsolete Vector and makes it type safe.
+/**  
+	Easy difficulty room maintains normal adventure game function 
 				    
 **/
 
@@ -26,11 +18,9 @@ import java.util.ListIterator;
 public class Level0Room extends Room {
 
  private String description;
-
  private CaveSite[] side = new CaveSite[6];
-
- private ArrayList<Item> contents = new ArrayList<Item>();
- 	private String roomName; 
+ private ArrayList<Item> contents = new ArrayList<Item>();	//items in room 
+ private String roomName; //name of room 
  
  Level0Room(String name) {
      side[0] = new Wall();
@@ -58,8 +48,11 @@ public class Level0Room extends Room {
  }
 
  @Override
+ //remove item from room if item is in room 
  public void removeItem(Item theItem) {
-     contents.remove(theItem);
+	 if (contents.contains(theItem)) {
+		 contents.remove(theItem);
+	 }
  }
 
  @Override
@@ -68,6 +61,7 @@ public class Level0Room extends Room {
  }
 
  @Override
+ //return contents of room 
  public Item[] getRoomContents() {
      Item[] contentsArray = new Item[contents.size()];
      contentsArray = contents.toArray(contentsArray);
@@ -86,18 +80,20 @@ public class Level0Room extends Room {
  }
 
  @Override
+ //return description of room and contents
  public String getDesc() {
      ListIterator<Item> roomContents = contents.listIterator();
      String contentString = "";
      while (roomContents.hasNext()) {
          contentString
-                 = contentString + (roomContents.next()).getDesc() + " ";
+                 = contentString + (roomContents.next()).getDesc() + "\n";
      }
 
      return description + '\n' + '\n'
              + "Room Contents: " + contentString + '\n';
  }
  
+ //return name of room 
  public String getRoomName () {
 	 return roomName; 
  }

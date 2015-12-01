@@ -1,5 +1,10 @@
 package esof322.a4;
 
+/**
+ * Tyler Wright
+ * Nov. 30, 2015
+ * View for saving the game 
+ */
 
 import javax.swing.*;
 

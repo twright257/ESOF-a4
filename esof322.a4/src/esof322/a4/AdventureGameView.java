@@ -1,5 +1,10 @@
 package esof322.a4;
 
+/**
+ * Tyler Wright
+ * Nov. 30, 2015
+ * Class controls all methods for user views and button clicks
+ */
 import BreezySwing.*;
 
 import java.util.ArrayList;
@@ -8,9 +13,6 @@ import javax.swing.*;
 
 public class AdventureGameView extends GBFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList loadInfo; 
@@ -28,24 +30,17 @@ public class AdventureGameView extends GBFrame {
 	JTextArea carryingArea = addTextArea("Nothing", 7, 1, 4, 3);
 
 	JLabel activityLabel = addLabel("Interaction Info", 2, 5, 1, 1); // third text box label
-
 	JTextArea activityArea = addTextArea("", 3, 4, 2, 2); // third text box
 
 	JLabel separator1 = addLabel("-----------------------------------------------------------------", 10, 1, 4, 1);
 
 	JLabel choiceLabel = addLabel("Choose a direction, pick-up, or drop an item", 11, 1, 5, 1);
 
-	JButton saveButton = addButton("Save Game", 8, 5, 1, 1); // button for
-																// saving
-	JButton loadButton = addButton("Load Game", 9, 5, 1, 1); // button for
-																// loading
-
+	JButton saveButton = addButton("Save Game", 8, 5, 1, 1); // button for saving
+	JButton restartButton = addButton("Reset Game", 9, 5, 1, 1); // button for loading
 	JButton grabButton1 = addButton("Grab Item 1", 11, 5, 1, 1); // choose to grab first item 
-
 	JButton grabButton2 = addButton("Grab Item 2", 12, 5, 1, 1); // choose to grab second item
-
 	JButton dropButton1 = addButton("Drop Item 1", 13, 5, 1, 1); // choose to drop first item
-
 	JButton dropButton2 = addButton("Drop Item 2", 14, 5, 1, 1);
 
 	JButton northButton = addButton("North", 12, 2, 1, 1);
@@ -106,12 +101,11 @@ public class AdventureGameView extends GBFrame {
 				drop(2);
 			else if (buttonObj == saveButton)
 				  saveWindow(); 
-			else if (buttonObj == loadButton)
-				//loadWindow();
-				System.out.println("");
+			else if (buttonObj == restartButton)
+				welcomeWindow(); 
 		} else {
-			if (buttonObj == loadButton) {
-				model.load(); 
+			if (buttonObj == restartButton) {
+				welcomeWindow(); 
 			}
 		}
 
@@ -152,12 +146,14 @@ public class AdventureGameView extends GBFrame {
 		
 	}
 	
-/*	private void loadWindow() {
-		JFrame view = new LoadView(this); 
-		view.setSize(300, 200);
-		view.setVisible(true);
-		view.setResizable(false);
-	}*/
+	//open new welcome window. used when reset if clicked 
+	private void welcomeWindow() {
+		JFrame welcome = new WelcomeView(); 
+		welcome.setSize(300, 200); 
+		welcome.setVisible(true);
+		welcome.setResizable(false); 
+		this.dispose(); 
+	}
 	
 
 }

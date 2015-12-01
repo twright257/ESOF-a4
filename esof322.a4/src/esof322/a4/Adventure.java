@@ -1,7 +1,11 @@
 package esof322.a4;
-//Michael Shihrer
-//Andrew Mueller
-//Tyler Wright
+
+import java.util.ArrayList;
+
+/**
+ * Tyler Wright
+ * Nov. 30, 2015
+ */
 
 
 
@@ -46,14 +50,21 @@ The main routine is AdventureGame.main
 */
 
 public class Adventure {
-
-	private String start; 
+	private ArrayList<String> loadInfo; //load info array 
+	private String start; //starting room 
   private CaveFactory f; 
   private Room entrance;
+  private Player player; 
   
-  public Adventure(CaveFactory f, String start) {
+  public Adventure(CaveFactory f, ArrayList<String> loadInfo, Player p) {
+	  this.loadInfo = loadInfo; 
 	 this.f = f; 
-	 this.start = start; 
+	 this.player = p; 
+	 if (loadInfo != null) {	//loading saved game 
+		 this.start = loadInfo.get(1); 
+	 } else {
+		 this.start = "outside"; 
+	 }
   }
   
   public Room createAdventure(){
@@ -122,7 +133,7 @@ public class Adventure {
      		"and a steady dripping from above (r7).");
      HealthKit kit2 = new HealthKit();
      kit2.setDesc("A first aid kit");
-     r6.addItem(kit2);
+     r7.addItem(kit2);
 
   // Connect rooms 3, 4, 5, 6, & 7.
      r3.setSide(2,r4);
@@ -177,8 +188,35 @@ public class Adventure {
     r10.setSide(5,theDoor);
     r11.setSide(4,theDoor);
 
+    //configure loaded settings
+    if (loadInfo != null) {	
+    	if (loadInfo.size() == 3) {	//no items 
+    		player.setHealth(100 - Integer.valueOf(loadInfo.get(2)));
+    	} else if (loadInfo.size() == 4) {	//1 item 
+    		player.setHealth(100 - Integer.valueOf(loadInfo.get(3)));
+    		if (loadInfo.get(2).equals("1: A shiny gold key.")) {	//first item is key 
+    			player.pickUp(theKey);
+    			r6.removeItem(theKey);
+    		} else {
+    			player.pickUp(theTreasure);
+    			r11.removeItem(theTreasure);
+    		}
+    	} else if (loadInfo.size() == 5) {	//2 items
+    		player.setHealth(100 - Integer.valueOf(loadInfo.get(4)));
+    		if (loadInfo.get(2).equals("1: A shiny gold key.")) {	//first item slot is key 
+    			player.pickUp(theKey);
+    			player.pickUp(theTreasure);
+    		} else {
+    			player.pickUp(theTreasure);
+    			player.pickUp(theKey);
+    		}
+    		r6.removeItem(theKey);
+    		r11.removeItem(theTreasure);
+    	}
+    }
+    
+    
  // Now return the entrance:
-
     if (start.equals("outside"))
     	entrance = outside; 
     else if (start.equals("r1"))

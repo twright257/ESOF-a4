@@ -1,0 +1,5 @@
+0
+r11
+1: A shiny gold key.
+2: A bag filled with gold bars.
+100

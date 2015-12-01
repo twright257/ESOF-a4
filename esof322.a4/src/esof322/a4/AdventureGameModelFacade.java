@@ -1,5 +1,11 @@
 package esof322.a4;
 
+/**
+ * Tyler Wright
+ * Nov. 30, 2015
+ * Facade between game functionality and user view 
+ */
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,9 +18,7 @@ public class AdventureGameModelFacade {
 
     // some private fields to reference current location,
     // its description, what I'm carrying, etc.
-    //
-    // These methods and fields are left as exercises.
-	private ArrayList<String> loadInfo; 
+	private ArrayList<String> loadInfo; //load game info 
     private Player thePlayer;
     private String interText = ""; //interaction info
     private CaveFactory f; 
@@ -23,18 +27,15 @@ public class AdventureGameModelFacade {
     AdventureGameModelFacade(int type, ArrayList<String> loadInfo) { // we initialize
     	this.loadInfo = loadInfo; 
         thePlayer = new Player();
-        if (type == 2) {
+        if (type == 2) {	//game is being loaded 
+        	System.out.println(loadInfo.size());
         	this.f = new FactoryCreator(Integer.valueOf(loadInfo.get(0))).createFactory(); 
-        	Adventure theCave = new Adventure(f, loadInfo.get(1)); 
-        	Room startRm = theCave.createAdventure(); 
-        	thePlayer.setRoom(startRm);
-        } else {
+        } else {	//new game 
         	this.f = new FactoryCreator(type).createFactory(); 
-        	Adventure theCave = new Adventure(f, "outside");
-            Room startRm = theCave.createAdventure();
-            thePlayer.setRoom(startRm);
         }
-        
+    	Adventure theCave = new Adventure(f, loadInfo, thePlayer); 
+    	Room startRm = theCave.createAdventure(); 
+    	thePlayer.setRoom(startRm);
     }
     
     //return it game has ended
@@ -141,18 +142,18 @@ public class AdventureGameModelFacade {
     //method for saving game
     public void save(String saveName) {
     	String fullSave = ""; 
-    	String location = thePlayer.getLoc().getRoomName();
-    	String things = thePlayer.showMyThings(); 
+    	String location = thePlayer.getLoc().getRoomName();	//get current player location 
+    	String things = thePlayer.showMyThings(); 	//get current player items 
     	String type= ""; 
-    	if (f.getClass().getSimpleName().equals("Level0Factory")) {
+    	if (f.getClass().getSimpleName().equals("Level0Factory")) {	//set current difficulty to either 0 or 1
     		type = "0"; 
     	} else {
     		type = "1"; 
     	}
-    	fullSave = type + "\r\n" + location + "\r\n" + things; 
-    	String fileName = "SaveStuff/" + saveName + ".txt"; 
+    	fullSave = type + "\r\n" + location + "\r\n" + things + String.valueOf(thePlayer.getHealth()); //all info to be saved 
+    	String fileName = "SaveStuff/" + saveName + ".txt"; //save file location 
     	PrintWriter writer = null;
-		try {
+		try {	//write to file 
 			writer = new PrintWriter(fileName, "UTF-8");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -164,11 +165,6 @@ public class AdventureGameModelFacade {
     	writer.println(fullSave);
     	writer.close();
 
-    }
-    
-    //method for loading game 
-    public void load() {
-    	
     }
     
 }

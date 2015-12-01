@@ -2,9 +2,16 @@ package esof322.a4;
 
 import java.util.ListIterator;
 
+/**
+ * Tyler Wright
+ * Nov. 30, 2015
+ * abstract class that is extended by the level0 and level1 rooms 
+ *
+ */
+
 public abstract class Room implements CaveSite{
 	 abstract void setDesc(String d);
-
+	 
 	 abstract void setSide(int direction, CaveSite m);
 
 	 abstract void addItem(Item i);

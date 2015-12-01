@@ -32,15 +32,20 @@ public class Player {
         return myLoc.exit(direction, this);
     }
 
+    //add to contents and remove from room 
     public void pickUp(Item i) {
         if (itemCount < 2) {
             if (i.getDesc().equals("A first aid kit")) { //do not add health kit to items
             	health = 100; 
-            	myLoc.removeItem(i); 
-            } else {
+            	if (myLoc != null) {
+            		myLoc.removeItem(i); 
+            	}
+            } else {	//add all others 
                 myThings[itemCount] = i;
                 itemCount++;
-                myLoc.removeItem(i);
+                if (myLoc != null) {
+            		myLoc.removeItem(i); 
+            	}
             }
         }
     }
@@ -84,7 +89,7 @@ public class Player {
         String outString = "";
         for (int n = 0; n < itemCount; n++) {
             outString = outString + Integer.toString(n + 1) + ": "
-                    + myThings[n].getDesc() + "\n";
+                    + myThings[n].getDesc() + "\r\n";
         }
         return outString;
     }
